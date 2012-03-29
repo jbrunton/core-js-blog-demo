@@ -5,3 +5,43 @@
  *= require_self
  *= require_tree . 
 */
+
+body {
+    padding-top: 80px;
+}
+
+.leader {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 22.5px;
+}
+
+.content-small {
+    height: 120px;
+}
+
+.content-large {
+    height: 300px;
+}
+
+pre code {
+    border: none;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.profile {
+    margin-bottom: 15px;
+}
+
+.profile .thumbnail {
+    margin: 0 10px 0 0;
+}
