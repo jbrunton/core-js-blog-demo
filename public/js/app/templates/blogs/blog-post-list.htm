@@ -1,0 +1,17 @@
+<script type="text/x-jquery-tmpl">
+
+    <ul class="nav nav-pills nav-stacked">
+        <% _.each($data, function(blog_post) { %>
+
+        <li>
+            <a class="nav-to" data-bind="attr: { href: blog_post.viewHref }">
+                <h3 data-bind="text: blog_post.title" />
+                <p>Posted on <span data-bind="text: blog_post.createdDateFm" /> at <span data-bind="text: blog_post.createdTimeFm" /></p>
+                <p data-bind="text: blog_post.leader" />
+            </a>
+        </li>
+
+        <% }); %>
+    </ul>
+
+</script>

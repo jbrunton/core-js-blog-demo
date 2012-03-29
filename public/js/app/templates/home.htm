@@ -1,0 +1,32 @@
+<script type="text/x-jquery-tmpl">
+    
+    <div class="hero-unit" data-bind="css: { paused: paused }">
+        
+        <h1 data-bind="text: count" />
+        <p>ticks at the last count</p>
+        
+        <hr />
+
+        <p>
+            <% if (paused()) { %>
+
+                <button data-bind="click: resume" class="btn btn-primary btn-large">
+                    resume
+                </button>
+
+            <% } else { %>
+
+                <button data-bind="click: pause" class="btn btn-primary btn-large">
+                    pause
+                </button>
+
+            <% } %>
+            
+            <button data-bind="click: reset, visible: count() > 0" class="btn btn-large">
+                reset
+            </button>
+        </p>
+    
+    </div>
+    
+</script>

@@ -1,0 +1,55 @@
+<script type="text/x-jquery-tmpl">
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+
+                <a class="brand" href="#">
+                  blogr
+                </a>
+                                    
+                <% if ($data.authorized()) { %>
+
+                    <ul class="nav">
+                        <li><a href="/blog_posts/create">compose</a></li>
+                        <li class="dropdown">
+                            <a href="#"
+                                class="dropdown-toggle"
+                                data-toggle="dropdown">
+                                my blogs
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">My Blog</a></li>
+                                <li><a href="#">New blog</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                <% } %>
+                
+                <form class="navbar-search pull-left" action="">
+                    <input class="search-query span2" type="text" placeholder="Search">
+                </form>
+                
+                <ul class="nav pull-right">
+
+                    <% if ($data.authorized()) { %>
+
+                        <li><a class="nav-to" data-bind="attr: { href: $data.user().viewHref }">my profile</a></li>
+                        <li><a class="nav-to" href="/auth/signout">sign out</a></li>
+
+                    <% } else { %>
+
+                        <li><a class="nav-to" href="/auth/signin">sign in</a></li>
+                        <li><a class="nav-to" href="/users/new">register</a></li>                    
+
+                    <% } %>
+
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    
+</script>

@@ -1,0 +1,6 @@
+[submodule "public/js/core"]
+	path = public/js/core
+	url = git@github.com:jbrunton/core-js.git
+[submodule "public/js/engines"]
+	path = public/js/engines
+	url = git@github.com:jbrunton/js-app-engines.git

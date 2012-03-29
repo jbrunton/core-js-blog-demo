@@ -1,0 +1,54 @@
+<script type="text/x-jquery-tmpl">
+
+    <form class="form-horizontal">
+        <fieldset>
+            <% if (id()) { %>
+                <legend data-bind="text: title" />
+            <% } else { %>
+                <legend>New post</legend>
+            <% } %>
+
+            <div class="control-group">
+                <label class="control-label" for="user_name">title</label> 
+                <div class="controls">
+                    <input type="text" class="input-xxlarge" data-bind="value: title">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="screen_name">description</label> 
+                <div class="controls">
+                    <textarea class="input-xxlarge" data-bind="value: description" />
+                </div>
+            </div>
+
+            <% if (id()) { %>
+            
+                <div class="control-group">
+                    <label class="control-label">posts</label>
+                    <div class="controls">
+                        <button class="nav-to btn" href="/blogs/<%= id() %>/compose">New post</button>
+
+                        <% _.each(blog_posts(), function(post) { %>
+                            <hr />
+                            <h3><span data-bind="text: post.title" />
+                            <small class="pull-right">
+                                <a class="nav-to" data-bind="attr: { href: post.editHref }">edit</a>
+                            </small>
+                            </h3>
+                            <p data-bind="text: post.leader" />
+                        <% }); %>
+
+                    </div>
+                </div>
+            
+            <% } %>
+            
+            <div class="form-actions">
+                <button class="btn btn-primary" data-bind="click: submit">Submit</button>
+                <button class="btn" data-bind="click: cancel">Cancel</button>
+            </div>
+        </fieldset>
+    </form>
+
+</script>

@@ -1,0 +1,41 @@
+<script type="text/x-jquery-tmpl">
+
+    <form class="form-horizontal">
+        <fieldset>
+            <% if (id()) { %>
+                <legend data-bind="text: title" /> 
+            <% } else { %>
+                <legend>Compose</legend>
+            <% } %>
+            <div class="control-group">
+                <label class="control-label" for="user_name">title</label> 
+                <div class="controls">
+                    <input type="text" class="input-xxlarge" data-bind="value: title">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="tags">tags</label>
+                <div class="controls">
+                    <textarea class="input-xxlarge" data-bind="value: tagsContent" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="screen_name">leader</label> 
+                <div class="controls">
+                    <textarea class="input-xxlarge" data-bind="value: leader" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="bio">content</label> 
+                <div class="controls">
+                    <textarea class="input-xxlarge content-large" data-bind="value: content" />
+                </div>
+            </div>
+            <div class="form-actions">
+                <button data-bind="click: submit" class="btn btn-primary">Save changes</button>
+                <button data-bind="click: cancel" class="btn">Cancel</button>
+            </div>
+        </fieldset>
+    </form>
+
+</script>

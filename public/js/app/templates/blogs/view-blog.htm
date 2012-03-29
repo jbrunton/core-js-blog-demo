@@ -1,0 +1,19 @@
+<script type="text/x-jquery-tmpl">
+
+    <div class="page-header">
+        <h1>
+            <span data-bind="text: title" />
+            <small class="pull-right">
+                <a class="nav-to" data-bind="attr: { href: editHref }">edit</a>
+            </small>
+        </h1>
+    </div>
+    
+    <div class="row">
+        <section class="span8">
+            <p class="leader" data-bind="text: description" />
+            <div data-bind="template: { name: 'blog-post-list-tmpl', data: blog_posts() }" />
+        </section>
+    </div>
+    
+</script>
