@@ -9,9 +9,9 @@ require([
     
     'app/controllers/home_controller',
     
-    'engines/auth_module',
-    'engines/routing_module',
-    'engines/templating_module',
+    'infrastructure/auth_module',
+    'infrastructure/routing_module',
+    'infrastructure/templating_module',
     
     'util/util'
 ], function(app, routingConfig, templatingConfig, authConfig) {
