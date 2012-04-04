@@ -11,14 +11,14 @@ define([], function(app) {
             return "/posts/" + this.id() + "/edit";
         }, this);
         
-        /*this.contentHtml = ko.computed(function() {
+        this.contentHtml = ko.computed(function() {
             if (this.content() && this.content().length) {
                 var converter = new Markdown.Converter();
                 return converter.makeHtml(this.content());
             } else {
                 return "";
             }
-        }, this);*/
+        }, this);
         
         this.createdDateFm = ko.computed(function() {
             var created_at = this.created_at();
