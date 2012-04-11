@@ -4,7 +4,7 @@
         <% _.each($data, function(blog) { %>
 
         <li>
-            <a class="nav-to" data-bind="attr: { href: blog.viewHref }">
+            <a class="nav-to" data-bind="attr: { href: $app.nav.urlFor(blog) }">
                 <h3 data-bind="text: blog.title" />
                 <p data-bind="text: blog.description" />
             </a>

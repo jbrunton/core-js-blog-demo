@@ -1,11 +1,12 @@
 define([
     'core/app',
     'app/models/user',
+    'app/extenders/url_extender',
     'text!app/templates/users/view-user.htm',
     'text!app/templates/users/edit-user.htm',
     'text!app/templates/blogs/blog-list.htm',
     'text!app/templates/blogs/blog-post-list.htm'
-], function(app, User, viewUserTmpl, editUserTmpl, blogListTmpl, blogPostListTmpl) {
+], function(app, User, urlExtender, viewUserTmpl, editUserTmpl, blogListTmpl, blogPostListTmpl) {
 
 
     app.core.define('UsersModule', function(sandbox) {
@@ -30,6 +31,12 @@ define([
                 }
             },
             
+            "!!Application.mapResource()": {
+                user: function(user, action) {
+                    return "/users/" + user.id() + "/" + action;
+                }
+            },
+            
             "@Application.initialize": function(app) {
                 this.ready();
             },
@@ -40,8 +47,8 @@ define([
                 
                 user.submit = function() {
                     user.save(function(user) {
-                        app.auth.signin(user.user_name(), null, function(user) {
-                            app.nav.to('/users/' + user.id() + '/view');
+                        app.auth.signin(user.user_name(), null, function(user, action) {
+                            app.nav.to('/users/' + user.id() + '/' + action);
                         });
                     });
                 };
@@ -54,7 +61,9 @@ define([
             },
             
             view_user: function(user_id) {
-                app.tmpl.renderPage('view-user-tmpl', new User().load(user_id));
+                var user = new User().load(user_id);
+                urlExtender.apply(user, { edit: true });
+                app.tmpl.renderPage('view-user-tmpl', user);
             },
             
             edit_user: function(user_id) {
@@ -62,13 +71,13 @@ define([
                 
                 user.submit = function() {
                     user.save(function() {
-                        app.nav.to("/users/" + user.id() + "/view");
+                        app.nav.to(app.nav.urlFor(user));
                     }, { recursive: false });
                 };
                 
                 user.cancel = function() {
                     // TODO: maybe move toward an app.urlFor(user) kinda paradigm?
-                    app.nav.to(user.viewHref());
+                    app.nav.to(app.nav.urlFor(user));
                 };
                 
                 app.tmpl.renderPage('edit-user-tmpl', user);

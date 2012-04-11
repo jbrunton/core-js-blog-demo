@@ -4,7 +4,7 @@
         <% _.each($data, function(blog_post) { %>
 
         <li>
-            <a class="nav-to" data-bind="attr: { href: blog_post.viewHref }">
+            <a class="nav-to" data-bind="attr: { href: $app.nav.urlFor(blog_post) }">
                 <h3 data-bind="text: blog_post.title" />
                 <p>Posted on <span data-bind="text: blog_post.createdDateFm" /> at <span data-bind="text: blog_post.createdTimeFm" /></p>
                 <p data-bind="text: blog_post.leader" />

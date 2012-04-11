@@ -3,11 +3,12 @@ define([
     'app/models/blog',
     'app/models/blog_post',
     'app/extenders/form_extender',
+    'app/extenders/url_extender',
     'text!app/templates/blogs/view-blog.htm',
     'text!app/templates/blogs/edit-blog.htm',
     'text!app/templates/blogs/view-post.htm',
     'text!app/templates/blogs/edit-post.htm'
-], function(app, Blog, BlogPost, formExtender, viewBlogTmpl, editBlogTmpl, viewPostTmpl, editPostTmpl) {
+], function(app, Blog, BlogPost, formExtender, urlExtender, viewBlogTmpl, editBlogTmpl, viewPostTmpl, editPostTmpl) {
 
     app.core.define('BlogsModule', function(sandbox) {
 
@@ -35,6 +36,15 @@ define([
                 }
             },
             
+            "!!Application.mapResource()": {
+                blog: function(blog, action) {
+                    return "/blogs/" + blog.id() + "/" + action;
+                },
+                blog_post: function(blog_post, action) {
+                    return "/posts/" + blog_post.id() + "/" + action;
+                }
+            },
+            
             "@Application.initialize": function(app) {
                 this.ready();
             },
@@ -54,7 +64,9 @@ define([
             },
             
             view_blog: function(blog_id) {
-                app.tmpl.renderPage('view-blog-tmpl', new Blog().load(blog_id));
+                var blog = new Blog().load(blog_id);
+                urlExtender.apply(blog, { edit: true });
+                app.tmpl.renderPage('view-blog-tmpl', blog);
             },
             
             edit_blog: function(blog_id) {
@@ -82,7 +94,9 @@ define([
             },
             
             view_post: function(post_id) {
-                app.tmpl.renderPage('view-post-tmpl', new BlogPost().load(post_id));
+                var post = new BlogPost().load(post_id);
+                urlExtender.apply(post, { edit: true });
+                app.tmpl.renderPage('view-post-tmpl', post);
             },
             
             edit_post: function(post_id) {

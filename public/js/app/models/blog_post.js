@@ -3,13 +3,13 @@ define([], function(app) {
     var BlogPost = function(data) {
         this.deserialize(data || {});
    
-        this.viewHref = ko.computed(function() {
+        /*this.viewHref = ko.computed(function() {
             return "/posts/" + this.id() + "/view";
         }, this);
         
         this.editHref = ko.computed(function() {
             return "/posts/" + this.id() + "/edit";
-        }, this);
+        }, this);*/
         
         this.contentHtml = ko.computed(function() {
             if (this.content() && this.content().length) {

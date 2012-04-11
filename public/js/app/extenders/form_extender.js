@@ -7,11 +7,11 @@ define([
             var defaults = {
                 submit: function() {
                     viewModel.save(function(obj) {
-                        app.nav.to(obj.viewHref());
+                        app.nav.urlFor(obj);
                     }, { recursive: false });
                 },
                 cancel: function() {
-                    app.nav.to(app.context.peek('History.prevUrl') || viewModel.viewHref());
+                    app.nav.to(app.context.peek('History.prevUrl') || app.nav.urlFor(viewModel));
                 }
             };
             

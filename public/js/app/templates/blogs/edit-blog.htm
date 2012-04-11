@@ -33,7 +33,7 @@
                             <hr />
                             <h3><span data-bind="text: post.title" />
                             <small class="pull-right">
-                                <a class="nav-to" data-bind="attr: { href: post.editHref }">edit</a>
+                                <a class="nav-to" data-bind="attr: { href: $app.nav.urlFor(post, 'edit') }">edit</a>
                             </small>
                             </h3>
                             <p data-bind="text: post.leader" />

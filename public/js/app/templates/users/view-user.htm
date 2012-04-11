@@ -4,7 +4,7 @@
         <h1>
             <span data-bind="text: screen_name" /><span>'s profile</span>
             <small class="pull-right">
-                <a class="nav-to" data-bind="attr: { href: editHref }">edit</a>
+                <a class="nav-to" data-bind="attr: { href: editUrl }">edit</a>
             </small>
         </h1>
     </div>
@@ -29,7 +29,7 @@
                     
                     <% } else { %>
                         
-                        <p><a data-bind="attr: { href: editHref }">Tell the world a little about yourself</a></p>
+                        <p><a data-bind="attr: { href: editUrl }">Tell the world a little about yourself</a></p>
                     
                     <% } %>
                         
