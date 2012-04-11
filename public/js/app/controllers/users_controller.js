@@ -51,7 +51,7 @@ define([
                     app.nav.to('/');
                 };
                 
-                app.renderView('edit-user-tmpl', user);
+                app.tmpl.renderPage({ content: { name: 'edit-user-tmpl', data: user } });
             },
             
             show_user: function(user_id) {
