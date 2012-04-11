@@ -17,7 +17,7 @@
         </section>
         <section class="span4">
             <p class="leader">
-                Tags:
+                Tags:<br />
                 <% _.each(tags(), function(tag, index, tags) { %>
                     <a class="nav-to" href="<%= '/search/tag/' + tag %>"><%= tag %></a>
                     <% if (index < tags.length - 1) { %>

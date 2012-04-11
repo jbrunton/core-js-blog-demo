@@ -39,7 +39,7 @@
             <section>
             <hr />
             <section>
-                <% if (blogs.length > 0) { %>
+                <% if (blogs().length > 0) { %>
                     <h2>Blogs</h2>
                     <hr />                
                     <div data-bind="template: { name: 'blog-list-tmpl', data: blogs() }"></div>
@@ -48,7 +48,7 @@
         </div>
         <div class="span8">
             <section>
-                <% if (blogs.length > 0) { %>
+                <% if (blogs().length > 0) { %>
                     <h2>Recent Posts</h2>
                     <hr />
                     <div data-bind="template: { name: 'blog-post-list-tmpl', data: recent_posts() }"></div>

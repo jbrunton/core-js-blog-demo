@@ -6,10 +6,14 @@ require([
     'config/auth',
     'config/resources',
     
-    'app/modules/resources_module',
+    'core/modules/types_module',
     
     'app/controllers/home_controller',
     'app/controllers/blogs_controller',
+    'app/controllers/auth_controller',
+    'app/controllers/users_controller',
+    
+    'app/modules/header_module',
     
     'infrastructure/auth_module',
     'infrastructure/routing_module',

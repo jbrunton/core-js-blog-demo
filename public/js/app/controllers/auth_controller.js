@@ -1,6 +1,6 @@
-/*define([
-    'core/Application',
-    'text!templates/auth/signin.htm'
+define([
+    'core/app',
+    'text!app/templates/auth/signin.htm'
 ], function(app, signinTmpl) {
 
     var AuthViewModel = function() {
@@ -10,39 +10,48 @@
         
         this.signin = function() {
             app.auth.signin(this.user_name(), this.password(), function(user) {
-                app.navigate('/users/' + user.id() + '/view');
+                app.nav.to('/users/' + user.id() + '/view');
             });
         };
     };
-
-    var module = {
-        //"@Router.ready": function(router) {
-            // router.registerController(this);
-            // this.publish('ready', [this]);
-        //},
-        
-        "@Application.initialize": function(app) {
-            // TODO: remove registerController function from app and automate based on, say, "@routes" attribute on module
-            app.registerController(this);
-            app.registerTemplate('signin-tmpl', $(signinTmpl));
-            this.publish('ready', [this]);
-        },
-        
-        routes: {
-            "auth/signin":  "signin",
-            "auth/signout": "signout"
-        },
-        
-        signin: function() {
-            app.renderView('signin-tmpl', new AuthViewModel());
-        },
-        
-        signout: function() {
-            app.auth.signout();
-            app.navigate('/');
-        }
-    };
     
-    return module;
+    app.core.define('AuthController', function(sandbox) {
+
+        var module = {
+            //"@Router.ready": function(router) {
+                // router.registerController(this);
+                // this.publish('ready', [this]);
+            //},
+            
+            "!!Application.controller()": {
+                routes: {
+                    "auth/signin":  "signin",
+                    "auth/signout": "signout"
+                },
+                
+                templates: {
+                    "signin-tmpl": $(signinTmpl)
+                }
+            
+            },
+            
+            "@Application.initialize": function(app) {
+                // TODO: remove registerController function from app and automate based on, say, "@routes" attribute on module
+                //app.registerController(this);
+                //app.registerTemplate('signin-tmpl', $(signinTmpl));
+                this.ready();
+            },
+            
+            signin: function() {
+                app.tmpl.renderPage({ content: { name: 'signin-tmpl', data: new AuthViewModel() } });
+            },
+            
+            signout: function() {
+                app.auth.signout();
+                app.nav.to('/');
+            }
+        };
+        
+        return module;
+    });
 });
-*/

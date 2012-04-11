@@ -29,6 +29,8 @@ class Api::BlogPostsController < ApiController
     end
     
     def create
+        params[:data][:tags] = params[:data][:tags].collect{ |tag| Tag.new(:tag => tag ) }
+        
         blog_post = BlogPost.new(params[:data])
         
         if blog_post.save

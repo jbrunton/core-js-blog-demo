@@ -9,32 +9,39 @@ define([
     var HomeViewModel = function() {
         var recentPosts = ko.observableArray([]);
         
-        BlogPost.loadCollection({ action: 'recent_posts' }, function(posts) {
-            recentPosts(posts);
-        });
-        
         this.recentPosts = recentPosts;
         
-        //this.user = ko.observable(app.auth.currentUser());
+        this.user = ko.observable();
 
         this.authorized = ko.computed(function() {
-            return false; // this.user() != null;
+            return this.user() != null;
         }, this);
         
         var self = this;
         
-        /*app.subscribe('Auth.success', function(user) {
+        this["@AuthModule.success"] = function(user) {
             self.user(user);
             console.log("authorized: " + self.authorized());
-        });
+        };
         
-        app.subscribe('Auth.signout', function() {
+        this["@AuthModule.signout"] = function() {
             self.user(null);
             console.log("authorized: " + self.authorized());
-        });*/
+        };
+    };
+    
+    HomeViewModel.prototype.refresh = function() {
+        var self = this;
+        
+        BlogPost.loadCollection({ action: 'recent_posts' }, function(posts) {
+            self.recentPosts(posts);
+        });
     };
     
     app.core.define('HomeController', function(sandbox) {
+
+        var home = new HomeViewModel();
+        sandbox.bindSubscriptions(home);
 
         var module = {
             //"@Router.ready": function(router) {
@@ -60,7 +67,8 @@ define([
             },
             
             index: function() {
-                app.tmpl.renderView('home-index-tmpl', new HomeViewModel());
+                home.refresh();
+                app.tmpl.renderPage({ content: { name: 'home-index-tmpl', data: home } });
             }
         };
         

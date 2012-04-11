@@ -20,6 +20,19 @@ define([], function(app) {
             }
         }, this);
         
+        this.tagsContent = ko.computed({
+            read: function() {
+                return this.tags().join(", ");
+            },
+            write: function(content) {
+                var tags = _.map(content.split(","), function(tag) {
+                    return tag.replace(/\s/g, "");
+                });
+                this.tags(tags);
+            },
+            owner: this
+        });
+        
         this.createdDateFm = ko.computed(function() {
             var created_at = this.created_at();
             if (created_at) {

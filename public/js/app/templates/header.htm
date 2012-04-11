@@ -8,26 +8,6 @@
                   blogr
                 </a>
                                     
-                <% if ($data.authorized()) { %>
-
-                    <ul class="nav">
-                        <li><a href="/blog_posts/create">compose</a></li>
-                        <li class="dropdown">
-                            <a href="#"
-                                class="dropdown-toggle"
-                                data-toggle="dropdown">
-                                my blogs
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">My Blog</a></li>
-                                <li><a href="#">New blog</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                <% } %>
-                
                 <form class="navbar-search pull-left" action="">
                     <input class="search-query span2" type="text" placeholder="Search">
                 </form>

@@ -46,15 +46,15 @@ define([
                 formExtender.apply(blog, {
                     submit: 'default',
                     cancel: function() {
-                        app.navigate(currentUser.viewHref());
+                        app.nav.to(currentUser.viewHref());
                     }
                 });
                 
-                app.tmpl.renderView('edit-blog-tmpl', blog);
+                app.tmpl.renderPage({ content: { name: 'edit-blog-tmpl', data: blog } });
             },
             
             view_blog: function(blog_id) {
-                app.tmpl.renderView('view-blog-tmpl', new Blog().load(blog_id));
+                app.tmpl.renderPage({ content: { name: 'view-blog-tmpl', data: new Blog().load(blog_id) } });
             },
             
             edit_blog: function(blog_id) {
@@ -65,7 +65,7 @@ define([
                     cancel: 'default'
                 });
                 
-                app.tmpl.renderView('edit-blog-tmpl', blog);
+                app.tmpl.renderPage({ content: { name: 'edit-blog-tmpl', data: blog } });
             },
             
             new_post: function(blog_id) {
@@ -74,39 +74,26 @@ define([
                 formExtender.apply(post, {
                     submit: 'default',
                     cancel: function() {
-                        app.navigate('/blogs/' + blog_id + '/view');
+                        app.nav.to('/blogs/' + blog_id + '/view');
                     }
                 });
                 
-                app.tmpl.renderView('edit-post-tmpl', post);
+                app.tmpl.renderPage({ content: { name: 'edit-post-tmpl', data: post } });
             },
             
             view_post: function(post_id) {
-                app.tmpl.renderView('view-post-tmpl', new BlogPost().load(post_id));
+                app.tmpl.renderPage({ content: { name: 'view-post-tmpl', data: new BlogPost().load(post_id) } });
             },
             
             edit_post: function(post_id) {
                 var post = new BlogPost().load(post_id);
-                
-                post.tagsContent = ko.computed({
-                    read: function() {
-                        return post.tags().join(", ");
-                    },
-                    write: function(content) {
-                        var tags = _.map(content.split(","), function(tag) {
-                            return tag.replace(/\s/g, "");
-                        });
-                        this.tags(tags);
-                    },
-                    owner: post
-                });
                 
                 formExtender.apply(post, {
                     submit: 'default',
                     cancel: 'default'
                 });
                 
-                app.tmpl.renderView('edit-post-tmpl', post);
+                app.tmpl.renderPage({ content: { name: 'edit-post-tmpl', data: post } });
             }
         };
         
