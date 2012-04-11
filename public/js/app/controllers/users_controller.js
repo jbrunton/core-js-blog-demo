@@ -18,9 +18,8 @@ define([
             "!!Application.controller()": {
                 routes: {
                     "users/new":            "new_user",
-                    "users/:user_id/view":  "show_user",
-                    "users/:user_id/edit":  "edit_user",
-                    "users/login":          "login"
+                    "users/:user_id/view":  "view_user",
+                    "users/:user_id/edit":  "edit_user"
                 },
                 
                 templates: {
@@ -54,7 +53,7 @@ define([
                 app.tmpl.renderPage('edit-user-tmpl', user);
             },
             
-            show_user: function(user_id) {
+            view_user: function(user_id) {
                 app.tmpl.renderPage('view-user-tmpl', new User().load(user_id));
             },
             
