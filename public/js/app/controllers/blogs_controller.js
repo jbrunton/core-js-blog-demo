@@ -50,11 +50,11 @@ define([
                     }
                 });
                 
-                app.tmpl.renderPage({ content: { name: 'edit-blog-tmpl', data: blog } });
+                app.tmpl.renderPage('edit-blog-tmpl', blog);
             },
             
             view_blog: function(blog_id) {
-                app.tmpl.renderPage({ content: { name: 'view-blog-tmpl', data: new Blog().load(blog_id) } });
+                app.tmpl.renderPage('view-blog-tmpl', new Blog().load(blog_id));
             },
             
             edit_blog: function(blog_id) {
@@ -65,7 +65,7 @@ define([
                     cancel: 'default'
                 });
                 
-                app.tmpl.renderPage({ content: { name: 'edit-blog-tmpl', data: blog } });
+                app.tmpl.renderPage('edit-blog-tmpl', blog);
             },
             
             new_post: function(blog_id) {
@@ -78,11 +78,11 @@ define([
                     }
                 });
                 
-                app.tmpl.renderPage({ content: { name: 'edit-post-tmpl', data: post } });
+                app.tmpl.renderPage('edit-post-tmpl', post);
             },
             
             view_post: function(post_id) {
-                app.tmpl.renderPage({ content: { name: 'view-post-tmpl', data: new BlogPost().load(post_id) } });
+                app.tmpl.renderPage('view-post-tmpl', new BlogPost().load(post_id));
             },
             
             edit_post: function(post_id) {
@@ -93,7 +93,7 @@ define([
                     cancel: 'default'
                 });
                 
-                app.tmpl.renderPage({ content: { name: 'edit-post-tmpl', data: post } });
+                app.tmpl.renderPage('edit-post-tmpl', post);
             }
         };
         

@@ -51,11 +51,11 @@ define([
                     app.nav.to('/');
                 };
                 
-                app.tmpl.renderPage({ content: { name: 'edit-user-tmpl', data: user } });
+                app.tmpl.renderPage('edit-user-tmpl', user);
             },
             
             show_user: function(user_id) {
-                app.tmpl.renderPage({ content: { name: 'view-user-tmpl', data: new User().load(user_id) } });
+                app.tmpl.renderPage('view-user-tmpl', new User().load(user_id));
             },
             
             edit_user: function(user_id) {
@@ -72,7 +72,7 @@ define([
                     app.nav.to(user.viewHref());
                 };
                 
-                app.tmpl.renderPage({ content: { name: 'edit-user-tmpl', data: user } });
+                app.tmpl.renderPage('edit-user-tmpl', user);
             }
         };
         

@@ -43,7 +43,7 @@ define([
             },
             
             signin: function() {
-                app.tmpl.renderPage({ content: { name: 'signin-tmpl', data: new AuthViewModel() } });
+                app.tmpl.renderPage('signin-tmpl', new AuthViewModel());
             },
             
             signout: function() {

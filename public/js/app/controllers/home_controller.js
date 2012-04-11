@@ -68,7 +68,7 @@ define([
             
             index: function() {
                 home.refresh();
-                app.tmpl.renderPage({ content: { name: 'home-index-tmpl', data: home } });
+                app.tmpl.renderPage('home-index-tmpl', home);
             }
         };
         
