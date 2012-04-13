@@ -41,9 +41,7 @@ define([
             type: 'GET',
             url: '/api/search/trending',
             success: function(tags) {
-                self.trendingTags(_.map(tags, function(tag) {
-                    return tag.tag;
-                }));
+                self.trendingTags(tags);
             },
             dataType: 'json'
         });

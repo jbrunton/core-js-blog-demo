@@ -29,7 +29,8 @@
             <h2>Trending Tags</h2>
             <p class="leader">
                 <% _.each(trendingTags(), function(tag, index, tags) { %>
-                    <a class="nav-to" href="<%= '/search/tag/' + tag %>"><%= tag %></a>
+                    <a class="nav-to" href="<%= '/search/tag/' + tag.tag %>"><%= tag.tag %></a>
+                    (<span data-bind="text: tag.count" />)
                     <% if (index < tags.length - 1) { %>
                         &sdot;
                     <% } %>
