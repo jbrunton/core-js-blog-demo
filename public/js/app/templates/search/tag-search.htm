@@ -1,0 +1,23 @@
+<script type="text/x-jquery-tmpl">
+    
+    <div class="page-header">
+        <h1>
+            Search for &#147;<span data-bind="text: tag" />&#148;
+        </h1>        
+    </div>
+    
+    <div class="row">
+        <div class="span8">
+            <% if (results().length > 0) { %>
+
+                <div data-bind="template: { name: 'blog-post-list-tmpl', data: results }" />
+
+            <% } else { %>
+            
+                <p><em>No results found</em></p>
+            
+            <% } %>
+        </div>
+    </div>
+    
+</script>

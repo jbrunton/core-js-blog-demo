@@ -17,6 +17,8 @@ CoreJsBlogDemo::Application.routes.draw do
     end
 
     match 'auth' => 'auth#index'
+    
+    match 'search/tag/:tag' => 'search#tag'
   end
   
   root :to => 'home#index'

@@ -12,6 +12,7 @@ require([
     'app/controllers/blogs_controller',
     'app/controllers/auth_controller',
     'app/controllers/users_controller',
+    'app/controllers/search_controller',
     
     'app/modules/header_module',
     
