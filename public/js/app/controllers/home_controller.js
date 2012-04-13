@@ -7,9 +7,9 @@ define([
 ], function(app, homeIndexTmpl, headerTmpl, blogPostListTmpl, BlogPost) {
 
     var HomeViewModel = function() {
-        var recentPosts = ko.observableArray([]);
+        this.recentPosts = ko.observableArray([]);
         
-        this.recentPosts = recentPosts;
+        this.trendingTags = ko.observableArray([]);
         
         this.user = ko.observable();
 
@@ -35,6 +35,17 @@ define([
         
         BlogPost.loadCollection({ action: 'recent_posts' }, function(posts) {
             self.recentPosts(posts);
+        });
+        
+        $.ajax({
+            type: 'GET',
+            url: '/api/search/trending',
+            success: function(tags) {
+                self.trendingTags(_.map(tags, function(tag) {
+                    return tag.tag;
+                }));
+            },
+            dataType: 'json'
         });
     };
     

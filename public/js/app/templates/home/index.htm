@@ -26,7 +26,15 @@
             <div data-bind="template: { name: 'blog-post-list-tmpl', data: recentPosts() }" />
         </div>
         <div class="span4">
-            <h2>Trending</h2>
+            <h2>Trending Tags</h2>
+            <p class="leader">
+                <% _.each(trendingTags(), function(tag, index, tags) { %>
+                    <a class="nav-to" href="<%= '/search/tag/' + tag %>"><%= tag %></a>
+                    <% if (index < tags.length - 1) { %>
+                        &sdot;
+                    <% } %>
+                <% }); %>
+            </p>
         </div>
     </div>
 
