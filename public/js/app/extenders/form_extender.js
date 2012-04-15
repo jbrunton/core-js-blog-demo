@@ -25,6 +25,6 @@ define([
         }
     };
     
-    return formExtender;
+    app.core.defineExtender('formExtender', formExtender);
     
 });

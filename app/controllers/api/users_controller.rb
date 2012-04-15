@@ -7,8 +7,14 @@ class Api::UsersController < ApiController
     end
     
     def show
-        includes = includes_hash( params[:includes] )
+        if params[:includes]
+            includes = includes_hash( params[:includes] )
+        else
+            includes = {}
+        end
+
         logger.info( includes.to_yaml )
+
         user = User.includes(includes).find(params[:id])
         respond_with( user )
     end

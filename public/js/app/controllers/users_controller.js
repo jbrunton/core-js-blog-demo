@@ -45,51 +45,49 @@ define([
             new_user: function() {
                 var user = new User();
                 
-                user.submit = function() {
-                    user.save(function(user) {
-                        app.auth.signin(user.user_name(), null, function(user, action) {
-                            app.nav.to('/users/' + user.id() + '/' + action);
-                        });
-                    });
-                };
-                
-                user.cancel = function() {
-                    app.nav.to('/');
-                };
+                app.core.extend(user, {
+                    formExtender: {
+                        submit: function() {
+                            user.save(function(user) {
+                                app.auth.signin(user.user_name(), null, function(user, action) {
+                                    app.nav.to('/users/' + user.id() + '/' + action);
+                                });
+                            });
+                        },
+                        cancel: 'default'
+                    }
+                });
                 
                 app.tmpl.renderPage('edit-user-tmpl', user);
             },
             
             view_user: function(user_id) {
-                var user = new User().load(user_id, {
-                    extensions: {
-                        urlExtender: { edit: true }
-                    },
-                    includes: {
-                        blogs: true,
-                        recent_posts: {
-                            includes: { tags: true }
+                app.tmpl.renderPage('view-user-tmpl',
+                    new User().load(user_id, {
+                        extensions: {
+                            urlExtender: { edit: true }
+                        },
+                        includes: {
+                            blogs: true,
+                            recent_posts: {
+                                includes: { tags: true }
+                            }
                         }
-                    }
-                });
-                app.tmpl.renderPage('view-user-tmpl', user);
+                    })
+                );
             },
             
             edit_user: function(user_id) {
-                var user = new User().load(user_id);
-                
-                user.submit = function() {
-                    user.save(function() {
-                        app.nav.to(app.nav.urlFor(user));
-                    }, { recursive: false });
-                };
-                
-                user.cancel = function() {
-                    // TODO: maybe move toward an app.urlFor(user) kinda paradigm?
-                    app.nav.to(app.nav.urlFor(user));
-                };
-                
-                app.tmpl.renderPage('edit-user-tmpl', user);
+                app.tmpl.renderPage('edit-user-tmpl',
+                    new User().load(user_id, {
+                        extensions: {
+                            formExtender: {
+                                submit: 'default',
+                                cancel: 'default'
+                            },
+                        }
+                    })
+                );
             }
         };
         
