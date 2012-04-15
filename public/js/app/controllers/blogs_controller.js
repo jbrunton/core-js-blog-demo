@@ -64,9 +64,13 @@ define([
             },
             
             view_blog: function(blog_id) {
-                var blog = new Blog().load(blog_id);
-                urlExtender.apply(blog, { edit: true });
-                app.tmpl.renderPage('view-blog-tmpl', blog);
+                app.tmpl.renderPage('view-blog-tmpl',
+                    new Blog().load(blog_id, {
+                        extensions: {
+                            urlExtender: { edit: true }
+                        }
+                    })
+                );
             },
             
             edit_blog: function(blog_id) {
@@ -94,17 +98,25 @@ define([
             },
             
             view_post: function(post_id) {
-                var post = new BlogPost().load(post_id);
-                urlExtender.apply(post, { edit: true });
-                app.tmpl.renderPage('view-post-tmpl', post);
+                app.tmpl.renderPage('view-post-tmpl',
+                    new BlogPost().load(post_id, {
+                        extensions: {
+                            urlExtender: { edit: true }
+                        }
+                    })
+                );
             },
             
             edit_post: function(post_id) {
-                var post = new BlogPost().load(post_id);
+                var post = new BlogPost();
                 
-                formExtender.apply(post, {
-                    submit: 'default',
-                    cancel: 'default'
+                post.load(post_id, {
+                    extensions: {
+                        formExtender: {
+                            submit: 'default',
+                            cancel: 'default'
+                        }
+                    }
                 });
                 
                 app.tmpl.renderPage('edit-post-tmpl', post);
