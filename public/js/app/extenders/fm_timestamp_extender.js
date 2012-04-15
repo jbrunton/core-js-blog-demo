@@ -1,4 +1,6 @@
-define([], function() {
+define([
+    'core/app'
+], function(app) {
 
     var extender = {
         apply: function(obj) {
@@ -18,6 +20,6 @@ define([], function() {
         }
     };
     
-    return extender;
-
+    app.core.defineExtender('fmTimestamps', extender);
+    
 });

@@ -72,13 +72,13 @@ The mediator is a well known and useful pattern for allowing unrelated units of 
 
 Automatic event registration (AER) is a useful pattern which improves upon mediators in 3 distinct ways:
 
-1. **Clarity of code**: it is clear at a glance which events a module subscribes to.  Moreover, it's easy to enforce naming conventions for events across the application.
+1. **Clarity of code**: it is clear at a glance which events a module subscribes to.  Moreover, meaningful naming conventions are enforced for events across the application.
 2. **Succinct code**: with event subscriptions handled automatically, you reduce the verbosity of your initialization code. 
 3. **Module permissions**: coupled with the sandbox pattern, you can easily define a permissions structure for inter-module subscriptions, to ensure dependencies are clearly expressed and carefully managed.
 
 ## What does it look like?
 
-Each module defines handlers for the events it wishes to subscribe to.  A common naming convention is used to distinguish events: in the case of this application, each event is prefixed with an ```@``` sign.  The subscriptions are then wired up automatically by the application core.
+Each module defines handlers for the events it wishes to subscribe to.  A common naming convention is used to distinguish events: in the case of this application framework, each event is prefixed with an ```@``` sign.  The subscriptions are then wired up automatically by the application core.
 
 Here's an example module definition:
 

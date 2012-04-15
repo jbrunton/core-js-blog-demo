@@ -33,7 +33,7 @@ define([], function(app) {
             owner: this
         });
         
-        this.createdDateFm = ko.computed(function() {
+        /*this.createdDateFm = ko.computed(function() {
             var created_at = this.created_at();
             if (created_at) {
                 return util.fm.formatDate(created_at);
@@ -45,7 +45,7 @@ define([], function(app) {
             if (created_at) {
                 return util.fm.formatTime(created_at);
             }
-        }, this);
+        }, this);*/
     };
     
     return BlogPost;

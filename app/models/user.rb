@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
         
         user[:type_name] = self.class.name.underscore
         
-        if !self.blogs.nil?
+        if self.blogs.loaded?
             user[:blogs] = self.blogs
         end
         
-        if !self.recent_posts.nil?
+        if self.recent_posts.loaded?
             user[:recent_posts] = self.recent_posts
         end
         

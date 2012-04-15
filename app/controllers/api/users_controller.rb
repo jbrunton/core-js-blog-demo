@@ -5,9 +5,11 @@ class Api::UsersController < ApiController
         users = User.all
         respond_with( users )
     end
-  
+    
     def show
-        user = User.find(params[:id])
+        includes = includes_hash( params[:includes] )
+        logger.info( includes.to_yaml )
+        user = User.includes(includes).find(params[:id])
         respond_with( user )
     end
     

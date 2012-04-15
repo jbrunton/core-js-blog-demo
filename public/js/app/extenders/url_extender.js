@@ -13,6 +13,6 @@ define([
         }
     };
     
-    return extender;
+    app.core.defineExtender('urlExtender', extender);
 
 });

@@ -16,6 +16,9 @@ require([
     
     'app/modules/header_module',
     
+    'app/extenders/fm_timestamp_extender',
+    'app/extenders/url_extender',
+    
     'infrastructure/auth_module',
     'infrastructure/routing_module',
     'infrastructure/templating_module',

@@ -34,6 +34,11 @@ define([
         var self = this;
         
         BlogPost.loadCollection({ action: 'recent_posts' }, function(posts) {
+            _.each(posts, function(post) {
+                app.core.extend(post, {
+                    fmTimestamps: {}
+                });
+            });
             self.recentPosts(posts);
         });
         

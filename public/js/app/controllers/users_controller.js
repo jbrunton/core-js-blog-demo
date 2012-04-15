@@ -61,8 +61,17 @@ define([
             },
             
             view_user: function(user_id) {
-                var user = new User().load(user_id);
-                urlExtender.apply(user, { edit: true });
+                var user = new User().load(user_id, {
+                    extensions: {
+                        urlExtender: { edit: true }
+                    },
+                    includes: {
+                        blogs: true,
+                        recent_posts: {
+                            includes: { tags: true }
+                        }
+                    }
+                });
                 app.tmpl.renderPage('view-user-tmpl', user);
             },
             
