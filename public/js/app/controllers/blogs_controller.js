@@ -74,14 +74,16 @@ define([
             },
             
             edit_blog: function(blog_id) {
-                var blog = new Blog().load(blog_id);
-                
-                formExtender.apply(blog, {
-                    submit: 'default',
-                    cancel: 'default'
-                });
-                
-                app.tmpl.renderPage('edit-blog-tmpl', blog);
+                app.tmpl.renderPage('edit-blog-tmpl',
+                    new Blog().load(blog_id, {
+                        extensions: {
+                            formExtender: {
+                                submit: 'default',
+                                cancel: 'default'
+                            } 
+                        }
+                    })
+                );
             },
             
             new_post: function(blog_id) {
