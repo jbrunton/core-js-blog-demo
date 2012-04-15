@@ -87,6 +87,9 @@ define([
             },
             
             new_post: function(blog_id) {
+                // TODO: parameterize resource constructors to be
+                // constructor(data, extensions).
+                // maybe consider separating extensions and includes in request params?
                 var post = new BlogPost({ blog_id: blog_id});
                 
                 formExtender.apply(post, {
