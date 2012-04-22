@@ -19,6 +19,7 @@ require([
     'app/extenders/fm_timestamp_extender',
     'app/extenders/url_extender',
     'app/extenders/form_extender',
+    'app/extenders/blog_post_extender',
     
     'infrastructure/auth_module',
     'infrastructure/routing_module',

@@ -2,9 +2,8 @@ define([
     'core/app',
     'text!app/templates/home/index.htm',
     'text!app/templates/header.htm',
-    'text!app/templates/blogs/blog-post-list.htm',
-    'app/models/blog_post'
-], function(app, homeIndexTmpl, headerTmpl, blogPostListTmpl, BlogPost) {
+    'text!app/templates/blogs/blog-post-list.htm'
+], function(app, homeIndexTmpl, headerTmpl, blogPostListTmpl) {
 
     var HomeViewModel = function() {
         this.recentPosts = ko.observableArray([]);
@@ -33,7 +32,7 @@ define([
     HomeViewModel.prototype.refresh = function() {
         var self = this;
         
-        BlogPost.loadCollection({ action: 'recent_posts' }, function(posts) {
+        app.resources.locate('blog_post').loadCollection({ action: 'recent_posts' }, function(posts) {
             _.each(posts, function(post) {
                 app.core.extend(post, {
                     fmTimestamps: {}

@@ -13,6 +13,8 @@ define(['core/app'], function (app) {
                 },
                 
                 "@FooModule.foo": function(module) {
+                    // AER impl. currently doesn't work with jasmine spies, so
+                    // it's necessary to call another method to expect the call for
                     this.fooHandler();
                 },
                 

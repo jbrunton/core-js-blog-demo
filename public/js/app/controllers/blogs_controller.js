@@ -1,14 +1,10 @@
 define([
     'core/app',
-    'app/models/blog',
-    'app/models/blog_post',
-    'app/extenders/form_extender',
-    'app/extenders/url_extender',
     'text!app/templates/blogs/view-blog.htm',
     'text!app/templates/blogs/edit-blog.htm',
     'text!app/templates/blogs/view-post.htm',
     'text!app/templates/blogs/edit-post.htm'
-], function(app, Blog, BlogPost, formExtender, urlExtender, viewBlogTmpl, editBlogTmpl, viewPostTmpl, editPostTmpl) {
+], function(app, viewBlogTmpl, editBlogTmpl, viewPostTmpl, editPostTmpl) {
 
     app.core.define('BlogsModule', function(sandbox) {
 
@@ -51,7 +47,7 @@ define([
             
             new_blog: function() {
                 var currentUser = app.auth.currentUser(),
-                    blog = new Blog({ user_id: currentUser.id() });
+                    blog = app.resources.new('blog', { user_id: currentUser.id() });
                 
                 formExtender.apply(blog, {
                     submit: 'default',
@@ -65,7 +61,7 @@ define([
             
             view_blog: function(blog_id) {
                 app.tmpl.renderPage('view-blog-tmpl',
-                    new Blog().load(blog_id, {
+                    app.resources.new('blog').load(blog_id, {
                         extensions: {
                             urlExtender: { edit: true }
                         }
@@ -75,7 +71,7 @@ define([
             
             edit_blog: function(blog_id) {
                 app.tmpl.renderPage('edit-blog-tmpl',
-                    new Blog().load(blog_id, {
+                    app.resources.new('blog').load(blog_id, {
                         extensions: {
                             formExtender: {
                                 submit: 'default',
@@ -90,7 +86,7 @@ define([
                 // TODO: parameterize resource constructors to be
                 // constructor(data, extensions).
                 // maybe consider separating extensions and includes in request params?
-                var post = new BlogPost({ blog_id: blog_id});
+                var post = new app.resources.new('blog_post', { blog_id: blog_id});
                 
                 formExtender.apply(post, {
                     submit: 'default',
@@ -104,23 +100,25 @@ define([
             
             view_post: function(post_id) {
                 app.tmpl.renderPage('view-post-tmpl',
-                    new BlogPost().load(post_id, {
+                    app.resources.new('blog_post').load(post_id, {
                         extensions: {
-                            urlExtender: { edit: true }
+                            urlExtender: { edit: true },
+                            blogPostExtensions: { contentHtml: true }
                         }
                     })
                 );
             },
             
             edit_post: function(post_id) {
-                var post = new BlogPost();
+                var post = new app.resources.new('blog_post');
                 
                 post.load(post_id, {
                     extensions: {
                         formExtender: {
                             submit: 'default',
                             cancel: 'default'
-                        }
+                        },
+                        blogPostExtensions: { tagsContent: true }
                     }
                 });
                 

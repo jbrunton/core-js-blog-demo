@@ -1,8 +1,7 @@
 define([
     'core/app',
-    'app/models/blog_post',
     'text!app/templates/search/tag-search.htm',
-], function(app, BlogPost, tagSearchTmpl) {
+], function(app, tagSearchTmpl) {
 
     var TagQuery = function(tag) {
         this.tag = ko.observable();
@@ -16,7 +15,7 @@ define([
 
         var self = this;
         
-        BlogPost.loadCollection({ url: '/api/search/tag/' + tag }, function(posts) {
+        app.resources.locate('blog_post').loadCollection({ url: '/api/search/tag/' + tag }, function(posts) {
             self.results(posts);
         });
     };

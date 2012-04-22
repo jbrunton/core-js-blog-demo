@@ -10,6 +10,11 @@ define([
             if (defn.edit) {
                 viewModel.editUrl = ko.observable(app.nav.urlFor(viewModel, 'edit'));
             }
+            if (defn.email) {
+                viewModel.emailUrl = ko.computed(function() {
+                    return "mailto:" + viewModel.email();
+                }, this);
+            }
         }
     };
     

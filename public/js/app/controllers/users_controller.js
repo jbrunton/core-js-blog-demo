@@ -1,13 +1,12 @@
 define([
     'core/app',
-    'app/models/user',
-    'app/extenders/url_extender',
     'text!app/templates/users/view-user.htm',
     'text!app/templates/users/edit-user.htm',
     'text!app/templates/blogs/blog-list.htm',
     'text!app/templates/blogs/blog-post-list.htm'
-], function(app, User, urlExtender, viewUserTmpl, editUserTmpl, blogListTmpl, blogPostListTmpl) {
+], function(app, viewUserTmpl, editUserTmpl, blogListTmpl, blogPostListTmpl) {
 
+    var User;
 
     app.core.define('UsersModule', function(sandbox) {
         var module = {
@@ -41,9 +40,8 @@ define([
                 this.ready();
             },
             
-            
             new_user: function() {
-                var user = new User();
+                var user = new app.resources.new('user');
                 
                 app.core.extend(user, {
                     formExtender: {
@@ -63,9 +61,9 @@ define([
             
             view_user: function(user_id) {
                 app.tmpl.renderPage('view-user-tmpl',
-                    new User().load(user_id, {
+                    app.resources.new('user').load(user_id, {
                         extensions: {
-                            urlExtender: { edit: true }
+                            urlExtender: { edit: true, email: true }
                         },
                         includes: {
                             blogs: true,
@@ -79,12 +77,12 @@ define([
             
             edit_user: function(user_id) {
                 app.tmpl.renderPage('edit-user-tmpl',
-                    new User().load(user_id, {
+                    app.resources.new('user').load(user_id, {
                         extensions: {
                             formExtender: {
                                 submit: 'default',
                                 cancel: 'default'
-                            },
+                            }
                         }
                     })
                 );
