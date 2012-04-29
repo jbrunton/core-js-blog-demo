@@ -9,6 +9,14 @@ define([
             return this.user() != null;
         }, this);
         
+        this.userUrl = ko.computed(function() {
+            # TODO: really, the 'my profile' link should be hidden until the url can be properly
+            # defined.
+            return this.user()
+                ? app.nav.urlFor(this.user())
+                : "/";
+        }, this);
+        
         var self = this;
         
         this["@AuthModule.success"] = function(user) {

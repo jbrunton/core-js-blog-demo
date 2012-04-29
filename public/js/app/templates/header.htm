@@ -16,7 +16,7 @@
 
                     <% if ($data.authorized()) { %>
 
-                        <li><a class="nav-to" data-bind="attr: { href: $data.user().viewHref }">my profile</a></li>
+                        <li><a class="nav-to" data-bind="attr: { href: userUrl }">my profile</a></li>
                         <li><a class="nav-to" href="/auth/signout">sign out</a></li>
 
                     <% } else { %>
