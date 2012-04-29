@@ -10,11 +10,9 @@ define([
         }, this);
         
         this.userUrl = ko.computed(function() {
-            # TODO: really, the 'my profile' link should be hidden until the url can be properly
-            # defined.
-            return this.user()
+            return this.authorized()
                 ? app.nav.urlFor(this.user())
-                : "/";
+                : null;
         }, this);
         
         var self = this;
