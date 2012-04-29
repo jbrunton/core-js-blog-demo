@@ -15,6 +15,7 @@ define(['core/app'], function (app) {
                 "@FooModule.foo": function(module) {
                     // AER impl. currently doesn't work with jasmine spies, so
                     // it's necessary to call another method to expect the call for
+                    // TODO: but why does the test for @Application.initialize appear to work?
                     this.fooHandler();
                 },
                 
