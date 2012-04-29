@@ -7,7 +7,7 @@ define([
             var defaults = {
                 submit: function() {
                     viewModel.save(function(obj) {
-                        app.nav.urlFor(obj);
+                        app.nav.to(app.nav.urlFor(obj));
                     }, { recursive: false });
                 },
                 cancel: function() {
