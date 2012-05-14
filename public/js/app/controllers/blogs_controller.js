@@ -33,11 +33,11 @@ define([
             },
             
             "!!Application.mapResource()": {
-                blog: function(blog, action) {
-                    return "/blogs/" + blog.id() + "/" + action;
+                blog: function(blog_id, action) {
+                    return "/blogs/" + blog_id + "/" + action;
                 },
-                blog_post: function(blog_post, action) {
-                    return "/posts/" + blog_post.id() + "/" + action;
+                blog_post: function(blog_post_id, action) {
+                    return "/posts/" + blog_post_id + "/" + action;
                 }
             },
             

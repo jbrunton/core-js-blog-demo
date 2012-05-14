@@ -31,8 +31,8 @@ define([
             },
             
             "!!Application.mapResource()": {
-                user: function(user, action) {
-                    return "/users/" + user.id() + "/" + action;
+                user: function(user_id, action) {
+                    return "/users/" + user_id + "/" + action;
                 }
             },
             
